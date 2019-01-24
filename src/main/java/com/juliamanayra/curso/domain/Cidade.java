@@ -2,6 +2,7 @@ package com.juliamanayra.curso.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Cidade implements Serializable {
 	
 	private String nome;  
 	
+	@ElementCollection
 	@ManyToOne
 	@JoinColumn(name="estado_id")
 	private Estado estado;

@@ -1,5 +1,7 @@
 package com.juliamanayra.curso.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -41,5 +43,14 @@ public class CategoriaService {
 			throw new DataIntegrityExeption("Não é possivel excluir uma categoria que possui produtos");
 		}
 	}
+	
+	public List<Categoria>  findAll() {
+//		List<Categoria> lista = repo.findAll();
+//		if(lista==null) {
+//			throw new ObjectNotFoundExeption("Objeto não encontrado! Id: "+ id + "Tipo: "+ Categoria.class.getName());
+//		}
+		return repo.findAll();
+	}
+	
 	
 }

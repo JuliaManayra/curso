@@ -5,12 +5,19 @@ import java.util.List;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.juliamanayra.curso.domain.Cliente;
 import com.juliamanayra.curso.domain.enums.TipoCliente;
 import com.juliamanayra.curso.dto.ClienteNewDTO;
+import com.juliamanayra.curso.repositories.ClienteRepository;
 import com.juliamanayra.curso.resources.exceptions.FieldMessage;
 import com.juliamanayra.curso.services.validation.utils.BR;
 
 public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteNewDTO> {
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
 	@Override
 	public void initialize(ClienteInsert ann) {
 	}
@@ -32,6 +39,11 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
 
 			}
 		}
+		Cliente aux = clienteRepository.findByEmail(objDto.getEmail());
+		if(aux!=null) {
+			list.add(new FieldMessage("email","Email já existente"));
+		}
+		
 		
 		
 		for (FieldMessage e : list) {

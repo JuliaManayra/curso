@@ -29,12 +29,8 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotEmpty(message="Preeenchimento obrigatório")
-	@Length(min=5, max=120, message="O tamnho deve ter entre 5 e 120 caracteres")
 	private String nome;
 	
-	@NotEmpty(message="Preeenchimento obrigatório")
-	@Email(message="Email inválido")
 	private String email;
 	
 	private String cpfOuCnpj;

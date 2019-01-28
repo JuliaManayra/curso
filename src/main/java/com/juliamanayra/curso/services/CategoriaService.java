@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.juliamanayra.curso.domain.Categoria;
+import com.juliamanayra.curso.dto.CategoriaDTO;
 import com.juliamanayra.curso.repositories.CategoriaRepository;
 import com.juliamanayra.curso.services.exception.DataIntegrityExeption;
 import com.juliamanayra.curso.services.exception.ObjectNotFoundExeption;
@@ -32,7 +33,9 @@ public class CategoriaService {
 		obj.setId(null);
 		return repo.save(obj);
 	}
-	
+	public Categoria fromDTO(CategoriaDTO obj) {
+		return new Categoria(obj.getId(),obj.getNome());
+	}
 	public Categoria update(Categoria obj) {
 		find(obj.getId());
 		return repo.save(obj);
